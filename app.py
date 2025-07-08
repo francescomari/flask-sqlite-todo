@@ -1,5 +1,5 @@
-from flask import Flask, request, redirect, url_for, render_template, g
 from dataclasses import dataclass
+from flask import Flask, request, redirect, url_for, render_template, g
 import sqlite3
 
 
