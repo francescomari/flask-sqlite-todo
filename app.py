@@ -3,24 +3,28 @@ from dataclasses import dataclass
 import sqlite3
 
 
+# The database is initialized before the application starts. The code that
+# in the rest of this application assumes that the database already has
+# the required structure. Please note that the database connection used
+# in initialize_database() is not the one used by the routes. The database
+# connection opened by initialize_database() is used exclusively for setting up
+# the structure of the database, if needed.
+
+# This function also shows that, if you have to execute several statements at
+# once, it's often convenient to write them in a separate file and use the
+# executescript() method on the database connection to execute them all at once.
+# Even if init.sql defines only a single table, in a regular application you
+# usually have several tables, and therefore several CREATE TABLE statements.
+
+
 def initialize_database():
     db = sqlite3.connect("todo.db")
-    db.execute(
-        """
-        CREATE TABLE IF NOT EXISTS todos (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            value TEXT
-        )
-        """
-    )
-    db.close()
+    try:
+        with open("init.sql") as f:
+            db.executescript(f.read())
+    finally:
+        db.close()
 
-
-# The database is initialized before the application starts. The code that
-# follows assumes that the database already has the required structure. Please
-# note that this database connection is not the one used by the routes. The
-# database connection opened by initialize_database() is used exclusively for
-# setting up the structure of the database, if needed.
 
 initialize_database()
 
