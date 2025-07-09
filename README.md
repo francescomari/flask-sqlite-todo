@@ -17,8 +17,8 @@ repositories above.
 
 ## The code
 
-Pay attention to both [the application code](app.py) and the [web application
-template](templates/index.html). The application code defines all the routes
-that the application responds to, while the template is responsible for
-dynamically rendering the HTML of the web application depending on the to-do
-list. The code that is unique to this project is heavily commented.
+Pay attention to both [the application code](app.py) and the
+[web application template](templates/index.html). The application code defines
+all the routes that the application responds to, while the template is
+responsible for dynamically rendering the HTML of the web application depending
+on the to-do list. The code that is unique to this project is heavily commented.
